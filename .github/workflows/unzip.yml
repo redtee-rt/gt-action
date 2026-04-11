@@ -1,0 +1,40 @@
+name: Unzip and Deploy Theme Layouts
+
+on:
+  # 触发工作流的事件：每次 push 到 main 分支
+  push:
+    branches:
+      - main
+    # 监控根目录下的1.zip文件变化
+    paths:
+      - '1.zip'
+
+jobs:
+  unzip-theme:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. 检出当前仓库的代码
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 2. 解压1.zip包到 themes/stack/layouts 目录
+      - name: Unzip 1.zip to themes/stack/layouts
+        run: |
+          mkdir -p themes/stack/layouts  # 确保目标目录存在
+          unzip -o 1.zip -d themes/stack/layouts  # 解压文件到指定目录
+
+      # 3. 构建 Hugo 网站
+      - name: Build Hugo site
+        run: |
+          hugo --minify --gc --baseURL "https://redtee-rt.github.io/gt-action/"
+
+      # 4. 上传构建结果到 GitHub Pages
+      - name: Upload artifact to GitHub Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./public
+
+      # 5. 部署到 GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v5
