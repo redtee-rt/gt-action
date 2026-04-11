@@ -2,6 +2,3 @@ baseURL = "https://redtee-rt.github.io/gt-action/"
 languageCode = "en-us"
 title = "My Hugo Site"
 theme = "stack"
-# hugo.toml
-[[module.imports]]
-    path = "github.com/CaiJimmy/hugo-theme-stack/v4"
