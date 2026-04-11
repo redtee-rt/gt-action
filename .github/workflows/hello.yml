@@ -13,6 +13,9 @@ jobs:
       - name: 打印一句话
         run: echo "Hello GitHub Actions!"
 
+      - name : show dir
+       run: ll
+       
       - name: 打印时间
         run: date
 
