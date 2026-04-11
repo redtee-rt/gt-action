@@ -1,4 +1,4 @@
-name: Unzip 1.zip and Deploy to GitHub Pages
+name: Unzip 1.zip to themes/stack
 
 on:
   # 每次 push 到 main 分支时触发
@@ -23,18 +23,3 @@ jobs:
         run: |
           mkdir -p themes/stack  # 确保目标目录存在
           unzip -o 1.zip -d themes/stack  # 解压文件到 themes/stack
-
-      # 3. 构建 Hugo 网站
-      - name: Build Hugo site
-        run: |
-          hugo --minify --gc --baseURL "https://redtee-rt.github.io/gt-action/"
-
-      # 4. 上传构建结果到 GitHub Pages
-      - name: Upload artifact to GitHub Pages
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./public
-
-      # 5. 部署到 GitHub Pages
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v5
