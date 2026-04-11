@@ -1,0 +1,20 @@
+name: Hello Action
+
+on:
+  workflow_dispatch:   # 手动触发
+  push:
+    branches: [ "main" ]
+
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 打印一句话
+        run: echo "Hello GitHub Actions!"
+
+      - name: 打印时间
+        run: date
+
+      - name: 打印仓库信息
+        run: echo "Repo is $GITHUB_REPOSITORY"
