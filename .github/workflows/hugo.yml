@@ -46,6 +46,8 @@ jobs:
       - name: Clean zip files
         run: |
           find . -name "*.zip" -delete
+      - name: Check config
+        run: hugo config
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
