@@ -21,7 +21,7 @@ jobs:
       - name: Unzip 1.zip to themes/stack
         run: |
           mkdir -p themes/stack  # 确保目标目录存在
-          unzip -o some-folder/1.zip -d themes/stack  # 解压文件到 themes/stack
+          unzip -o 1.zip -d themes/stack  # 解压文件到 themes/stack
 
       # 3. 配置 Git 用户信息
       - name: Configure Git user
