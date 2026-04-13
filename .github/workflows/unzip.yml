@@ -4,8 +4,9 @@ on:
   push:
     branches:
       - main  # 触发条件：push到 main 分支
-    paths:
-      - 'some-folder/1.zip'  # 监控 `some-folder/1.zip` 文件的变化
+
+permissions:
+  contents: write
 
 jobs:
   unzip-and-commit:
