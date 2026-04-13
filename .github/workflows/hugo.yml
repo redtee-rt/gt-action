@@ -43,6 +43,9 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: recursive
+      - name: Clean zip files
+        run: |
+          find . -name "*.zip" -delete
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
