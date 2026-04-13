@@ -1,16 +1,14 @@
-name: Unzip 1.zip to themes/stack
+name: Unzip 1.zip to themes/stack and commit changes on push
 
 on:
-  # 每次 push 到 main 分支时触发
   push:
     branches:
-      - main
-    # 监控根目录下的1.zip文件变化
+      - main  # 触发条件：push到 main 分支
     paths:
-      - '1.zip'
+      - 'some-folder/1.zip'  # 监控 `some-folder/1.zip` 文件的变化
 
 jobs:
-  unzip-theme:
+  unzip-and-commit:
     runs-on: ubuntu-latest
 
     steps:
@@ -18,8 +16,21 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # 2. 解压1.zip包到 themes/stack 目录
+      # 2. 解压 1.zip 文件到 themes/stack 目录
       - name: Unzip 1.zip to themes/stack
         run: |
           mkdir -p themes/stack  # 确保目标目录存在
-          unzip -o 1.zip -d themes/stack  # 解压文件到 themes/stack
+          unzip -o some-folder/1.zip -d themes/stack  # 解压文件到 themes/stack
+
+      # 3. 配置 Git 用户信息
+      - name: Configure Git user
+        run: |
+          git config --global user.name "redtee-rt"
+          git config --global user.email "fujiadong@dataeyes.ai"
+
+      # 4. 提交解压后的文件到 GitHub
+      - name: Commit and push changes
+        run: |
+          git add themes/stack/*
+          git commit -m "Unzip 1.zip to themes/stack"
+          git push
