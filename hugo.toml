@@ -4,4 +4,4 @@ title = "My Hugo Site"
 theme = "stack"
 
 [params]
-mainSections = ["posts"]
+mainSections = ["post"]
