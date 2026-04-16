@@ -5,6 +5,4 @@ theme = "stack"
 
 [params]
 mainSections = ["post"]
-
-[params]
 favicon = "/favicon.ico"
